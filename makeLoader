@@ -1,0 +1,25 @@
+rm -f flashloader.exe
+rm -f 838.sre*
+rm -f 858.sre*
+rm -f 838_ROM.sre*
+rm -f 822.sre*
+
+/cygdrive/c/cygwin/opt/sparc-elf-3.2.3/bin/sparc-elf-gcc.exe -Ttext=0x50000000 -D V838 -nostdlib -mv8 -O2 -o flashloader.exe flashloader_v8.c
+/cygdrive/c/cygwin/opt/sparc-elf-3.2.3/bin/sparc-elf-objcopy -O srec flashloader.exe 838.sre
+cp 838.sre 838.srec
+
+/cygdrive/c/cygwin/opt/sparc-elf-3.2.3/bin/sparc-elf-gcc.exe -Ttext=0x50000000 -D V858 -nostdlib -mv8 -O2 -o flashloader.exe flashloader_v8.c
+/cygdrive/c/cygwin/opt/sparc-elf-3.2.3/bin/sparc-elf-objcopy -O srec flashloader.exe 858.sre
+cp 858.sre 858.srec
+
+/cygdrive/c/cygwin/opt/sparc-elf-3.2.3/bin/sparc-elf-gcc.exe -Ttext=0x50000000 -D V838R -nostdlib -mv8 -O2 -o flashloader.exe flashloader_v8.c
+/cygdrive/c/cygwin/opt/sparc-elf-3.2.3/bin/sparc-elf-objcopy -O srec flashloader.exe 838_ROM.sre
+cp 838_ROM.sre 838_ROM.srec
+
+
+/cygdrive/c/cygwin/opt/sparc-elf-3.2.3/bin/sparc-elf-gcc.exe -Ttext=0x50000000 -D V822 -nostdlib -mv8 -O2 -o flashloader.exe flashloader_v8.c
+/cygdrive/c/cygwin/opt/sparc-elf-3.2.3/bin/sparc-elf-objcopy -O srec flashloader.exe 822.sre
+cp 822.sre 822.srec
+
+ls *.sre*  -la
+ls flashloader.exe -la
