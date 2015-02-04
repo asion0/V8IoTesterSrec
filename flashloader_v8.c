@@ -943,6 +943,11 @@ static U08 GPIO_Test()
   int passCount = 0;
   for(i=0;i<TEST_GPIO_COUNT;i++)
   {
+    gpio_set_input(io_test[i].pin0);
+    gpio_set_input(io_test[i].pin1);
+  }  
+  for(i=0;i<TEST_GPIO_COUNT;i++)
+  {
     if (GPIO_TestOneGroup(&io_test[i]) == 0) 
     {
 		  DebugOutput(" p0 ", io_test[i].pin0);
@@ -957,6 +962,8 @@ static U08 GPIO_Test()
 		  UartPutLine(" OK\r\n");
 		  passCount++;
     }
+    gpio_set_input(io_test[i].pin0);
+    gpio_set_input(io_test[i].pin1);
   }
   if(passCount==TEST_GPIO_COUNT)
   {
